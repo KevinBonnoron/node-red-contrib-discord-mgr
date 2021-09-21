@@ -1,10 +1,10 @@
 {
-  "name": "node-red-contrib-MY_NODESET_NAME",
+  "name": "node-red-contrib-discord-mgr",
   "version": "0.2.3",
-  "description": "Description of the node set here",
+  "description": "Allow handling of a discord",
   "scripts": {
     "add-node": "node ./utils/add-node.js",
-    "copy": "copyfiles -u 2 \"./src/nodes/**/*.{png,svg}\" \"./dist/nodes/\"",
+    "copy": "copyfiles -u 2 \"./src/nodes/**/*.{png,svg,json}\" \"./dist/nodes/\"",
     "build:editor": "rollup -c rollup.config.editor.js",
     "build:editor:watch": "rollup -c rollup.config.editor.js -w",
     "build:runtime": "tsc -p tsconfig.runtime.json",
@@ -16,14 +16,21 @@
     "lint": "prettier --ignore-path .eslintignore --check '**/*.{js,ts,md}'; eslint --ext .js,.ts .",
     "lint:fix": "prettier --ignore-path .eslintignore --write '**/*.{js,ts,md}'; eslint --ext .js,.ts . --fix"
   },
-  "author": "Alex Kaul",
+  "author": "KevinBonnoron",
   "license": "MIT",
   "node-red": {
     "nodes": {
-      "transform-text": "./dist/nodes/transform-text/transform-text.js"
+      "discord-msg-in": "./dist/nodes/discord-msg-in/discord-msg-in.js",
+      "discord-config": "./dist/nodes/discord-config/discord-config.js",
+      "discord-msg-out": "./dist/nodes/discord-msg-out/discord-msg-out.js",
+      "discord-roles": "./dist/nodes/discord-roles/discord-roles.js"
     }
   },
-  "dependencies": {},
+  "dependencies": {
+    "@types/ws": "^7.4.7",
+    "discord.js": "^12.5.3",
+    "ws": "^8.2.2"
+  },
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.0.0",
     "@types/express": "^4.17.9",
